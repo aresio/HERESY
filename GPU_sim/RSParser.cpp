@@ -7,6 +7,8 @@
 #include <vector>
 #include <istream>
 #include <sstream>
+#include <math.h>
+#include <climits>
 
 void tokenize( std::string s, std::vector<std::string>& v )  {
     std::istringstream buf(s.c_str());

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <climits>
 
 const unsigned int FINE_REAGENTI = UINT_MAX;
 const unsigned int FINE_INIBITORI = UINT_MAX-1;
