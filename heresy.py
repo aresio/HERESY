@@ -29,9 +29,11 @@ class Options(QtGui.QDialog):
 		fname = QtGui.QFileDialog.getOpenFileName(self, 'Select executable file', '.')
 		self.gpusimpath.setText(fname)
 
+
 	def save_config(self):
 		cp = ConfigParser.RawConfigParser()
 		cp.add_section('General') 
+		self.main_ref.GPUsimulator = str(self.gpusimpath.text())
 		cp.set('General', 'GPUsimulator', self.main_ref.GPUsimulator)
 		cp.set('General', 'threshold', self.main_ref.THRESHOLD)
 		with open("heresyconfig.ini", "wb") as configfile:
@@ -98,28 +100,30 @@ class MyWindow(QtGui.QMainWindow):
 		try:
 			print " * Loading setting for GPU simulator:",
 			self.GPUsimulator = cp.get('General', 'GPUsimulator')
-			print self.GPUsimulator
+			print self.GPUsimulator			
 		except ConfigParser.NoSectionError:
-			print "WARNING: config.ini seems to be broken or missing"
+			print "WARNING: heresyconfig.ini seems to be broken or missing"
 		except ConfigParser.NoOptionError:
-			print "WARNING: config ini seems to be old"
+			print "WARNING: heresyconfig.ini seems to be old"
 
 		try:
 			print " * Loading setting for threshold:",			
 			self.THRESHOLD = cp.getint('General', 'threshold')
 			print self.THRESHOLD
 		except ConfigParser.NoSectionError:
-			print "WARNING: config.ini seems to be broken or missing"
+			print "WARNING: heresyconfig.ini seems to be broken or missing"
 		except ConfigParser.NoOptionError:
-			print "WARNING: config ini seems to be old"
+			print "WARNING: heresyconfig.ini seems to be old"
 
 
 	def check_gpu_sim(self, path):
 		try:
 			check = os.path.isfile(path) 
+			print "Binary file found for GPU simulator"
+			return True
 		except:
-			check = False
-		return check
+			print "Binary file not found for GPU simulator"
+			return False
 
 
 	def normalization(self, rs, context):

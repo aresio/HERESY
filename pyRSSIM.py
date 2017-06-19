@@ -56,9 +56,9 @@ class ReactionSystem(object):
 		for reaction in self.reactions:
 			if verbose: print "   Applying reaction:", reaction
 			if verbose: print "    Verifying reactants:", reaction.reactants
-			if set(reaction.reactants).issubset(self.state):
+			if reaction.reactants.issubset(self.state):
 				if verbose: print "     Reactants are present, veryfing inhibitors:", reaction.inhibitors
-				if set(reaction.inhibitors).intersection(self.state)!=set([]) and len(reaction.inhibitors)>0:
+				if reaction.inhibitors.intersection(self.state)!=set() and len(reaction.inhibitors)>0:
 					if verbose: print "     Inhibitors are present, reaction aborted"
 					# if verbose: print set(reaction.inhibitors).intersection(self.state)
 				else:
@@ -152,7 +152,8 @@ class ReactionSystem(object):
 						# print "Reaction:", list_reactants, list_inhibitors, list_products
 						# reacts = eval(reacts)
 						# print reacts, inhibs, prods
-						r = Reaction( list_reactants, list_inhibitors, list_products, name="R"+str(len(self.reactions)))
+						r = Reaction( set(list_reactants), set(list_inhibitors), set(list_products),
+                                                              name="R"+str(len(self.reactions)))
 						self.add_reaction(r)	
 						# if verbose: print r
 
