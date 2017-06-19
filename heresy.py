@@ -6,6 +6,12 @@ import os
 from subprocess import check_output
 import ConfigParser
 import time
+import iconrc
+
+VERSION = "1.1.0"
+
+
+
 
 class Reaction(object):
 
@@ -16,6 +22,18 @@ class Reaction(object):
 	def __repr__(self):
 		return self.name +": "+ str(self.structure)
 
+
+
+
+class About(QtGui.QDialog):
+
+	def __init__(self, main_ref=None):
+		super(About, self).__init__(None, QtCore.Qt.Window | QtCore.Qt.WindowStaysOnTopHint)
+		#self.setWindowModality(QtCore.Qt.WindowModal)
+		uic.loadUi('about2.ui', self)
+		self.main_ref=main_ref
+		#import iconrc
+		
 
 
 class Options(QtGui.QDialog):
@@ -76,6 +94,8 @@ class MyWindow(QtGui.QMainWindow):
 		self.statusBar().addWidget(self.iterations_comm,1)
 
 		self.flag_normalize.setVisible(False)
+
+		self.setWindowTitle("HERESY v"+VERSION)
 
 
 	def load_settings(self, option_ref=None):
@@ -331,7 +351,7 @@ class MyWindow(QtGui.QMainWindow):
 
 
 	# simulation on GPU
-	def start_simulation_gpu(self, keep_intermediate_files=True):
+	def start_simulation_gpu(self, keep_intermediate_files=False):
 		
 		desc, cont, u1, u2 = self.read_form_and_convert()
 
@@ -449,7 +469,7 @@ class MyWindow(QtGui.QMainWindow):
 		self.CONTEXTLENGTH = numsteps
 
 		if numsteps==0:
-			print "ERROR: no context detected"
+			#print "ERROR: no context detected"
 			return False
 		
 		if verbose: print " * Context seems okay!"
@@ -499,7 +519,7 @@ class MyWindow(QtGui.QMainWindow):
 
 
 	def show_about(self):
-		pass
+		about_window.show()
 
 
 	def saveas(self):
@@ -520,13 +540,13 @@ class MyWindow(QtGui.QMainWindow):
 			fo.write(self.context.toPlainText())
 		print " * File saved to", targetfile
 		self.heresyfile = targetfile
-		self.setWindowTitle("HERESY v1.0.0 - "+fname)
+		self.setWindowTitle("HERESY v"+VERSION+" - "+fname)
 
 	def openfile(self):
 		fname = QtGui.QFileDialog.getOpenFileName(self, 'Select HERESY file', '.', '*.rsy')
 		if fname!="":
 			self.open_heresy_file(fname)
-			self.setWindowTitle("HERESY v1.0.0 - "+fname)
+			self.setWindowTitle("HERESY v"+VERSION+" - "+fname)
 
 
 	def open_heresy_file(self, fname):
@@ -549,6 +569,7 @@ if __name__ == '__main__':
     window = MyWindow()
     window.show()
     options_window = Options(main_ref=window)    
+    about_window = About(main_ref=window)
 
     window.load_settings(option_ref=options_window) 
 

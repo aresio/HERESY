@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="mainres.qrc">
-    <normaloff>:/noprefix/photo.jpg</normaloff>:/noprefix/photo.jpg</iconset>
+    <normaloff>:/noprefix/heresy.png</normaloff>:/noprefix/heresy.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -562,6 +562,9 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
       </item>
       <item>
        <widget class="QCommandLinkButton" name="automatic">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically perform the simulation of the reaction system using either the CPU or the GPU, using a heuristic on the number of reactions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -573,7 +576,7 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
       <item>
        <widget class="QCommandLinkButton" name="button_simulate">
         <property name="enabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="toolTip">
          <string>Perform the simulation of the reaction system using the CPU.</string>
@@ -585,6 +588,9 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
       </item>
       <item>
        <widget class="QCommandLinkButton" name="simwithgpu">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="toolTip">
          <string>Perform the simulation of the reaction system using the GPU (if available).</string>
         </property>
@@ -671,6 +677,9 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
    <property name="text">
     <string>&amp;Exit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
   </action>
   <action name="action_Preferences">
    <property name="text">
@@ -686,6 +695,9 @@ QCheckBox::indicator:disabled, QRadioButton::indicator:disabled
   <action name="action_About_ORSI">
    <property name="text">
     <string>&amp;About HERESY...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
  </widget>
