@@ -36,7 +36,7 @@ class Options(QtGui.QDialog):
 		cp.set('General', 'threshold', self.main_ref.THRESHOLD)
 		with open("heresyconfig.ini", "wb") as configfile:
 			cp.write(configfile)
-		print " * Configuration saved in orsiconfig.ini"		
+		print " * Configuration saved in heresyconfig.ini"		
 		self.hide()
 
 
@@ -93,7 +93,7 @@ class MyWindow(QtGui.QMainWindow):
 
 	def load_settings_from_file(self):
 		cp = ConfigParser.RawConfigParser()
-		cp.read("orsiconfig.ini")
+		cp.read("heresyconfig.ini")
 
 		try:
 			print " * Loading setting for GPU simulator:",
