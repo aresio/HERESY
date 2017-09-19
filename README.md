@@ -20,5 +20,5 @@ _Context:_ the set of chemicals for each iteration is entered as a single line s
 
 # Citing HERESY
 
-Nobile M.S., Porreca A.E., Spolaor S., Manzoni L., Cazzaniga P., Mauri G., Besozzi D.: Efficient simulation of reaction systems on Graphics Processing Units. Fundamenta Informaticae (accepted, 2017)
+Nobile M.S., Porreca A.E., Spolaor S., Manzoni L., Cazzaniga P., Mauri G., Besozzi D.: Efficient simulation of reaction systems on Graphics Processing Units. Fundamenta Informaticae, 154:307-321, 2017
 
